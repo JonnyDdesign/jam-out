@@ -7,20 +7,37 @@ import { Playlist } from '../Playlist/Playlist';
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {searchResults: [
-      {
-        name: "Amerika's Most Wanted",
-        artist: "2Pac",
-        album: "Greatest Hits",
-        id: 1,
-      },
-      {
-        name: "Gin & Juice",
-        artist: "Snoop",
-        album: "Dog Pound",
-        id: 2,
-      }
-    ]}
+    this.state = {
+      searchResults: [
+        {
+          name: "Amerika's Most Wanted",
+          artist: "2Pac",
+          album: "Greatest Hits",
+          id: 1,
+        },
+        {
+          name: "Gin & Juice",
+          artist: "Snoop",
+          album: "Dog Pound",
+          id: 2,
+        },
+      ],
+      playlistName: "Summer Jams",
+      playlistTracks: [
+        {
+          name: "Doin Time",
+          artist: "Sublime",
+          album: "Sublime",
+          id: 3,
+        },
+        {
+          name: "Golden",
+          artist: "Harry Styles",
+          album: "Fine Line",
+          id: 4,
+        },
+      ],
+    };
   }
 
   render() {
