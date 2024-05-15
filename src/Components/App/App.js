@@ -40,6 +40,14 @@ class App extends React.Component {
     };
   }
 
+  addTrack(track) {
+    const foundTrack = this.state.playlistTracks.find(
+      (playlistTrack) => playlistTrack.id === track.id
+    );
+    const newTrack = this.state.playlistTracks.concat(track);
+    foundTrack ? console.log("Track already exists") : this.setState({ playlistTracks: newTrack })
+  }
+
   render() {
     return (
       <div>
