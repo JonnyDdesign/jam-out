@@ -23,7 +23,22 @@ const Spotify = {
         const accessToken = Spotify.getAccessToken()
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
             headers: { Authorization: `Bearer ${accessToken}` },
-        });        
+        })
+        .then(response => {
+            return response.json()
+        })
+        .then((jsonResponse) => {
+            if (!jsonResponse.tracks) {
+                return [];
+            }
+            return jsonResponse.tracks.items.map(tracks => ({
+                id: tracks.id,
+                name: tracks.name,
+                artist: tracks.artist[0].name,
+                album: tracks.album.name,
+                uri: tracks.uri
+            }))
+        })        
     },
 };
 
