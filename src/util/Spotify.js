@@ -45,6 +45,9 @@ const Spotify = {
         if (!name || !trackURIs) {
             return;
         }
+        let accessToken = Spotify.getAccessToken();
+        const headers = { Authorization: `Bearer ${accessToken}` };
+        let userID = "";
     }
 };
 
