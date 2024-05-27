@@ -40,6 +40,12 @@ const Spotify = {
             }))
         })        
     },
+
+    savePlaylistName(name, trackURIs) {
+        if (!name || !trackURIs) {
+            return;
+        }
+    }
 };
 
 export { Spotify };
