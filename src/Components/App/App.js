@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './App.css';
+import styles from './App.module.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
