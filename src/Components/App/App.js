@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
-import { SearchBar } from '../SearchBar/SearchBar';
-import { SearchResults } from '../SearchResults/SearchResults';
-import { Playlist } from '../Playlist/Playlist';
+import React, { useState } from 'react';
+import styles from './App.css';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import Playlist from '../Playlist/Playlist';
 import { Spotify } from '../../util/Spotify';
 
 class App extends React.Component {
