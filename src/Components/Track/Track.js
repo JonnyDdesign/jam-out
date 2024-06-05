@@ -1,37 +1,45 @@
 import React from 'react';
-import './Track.css';
+import styles from './Track.module.css';
 
-export class Track extends React.Component {
-    constructor(props) {
-        super(props)
-        this.addTrack = this.addTrack.bind(this);
-        this.removeTrack = this.removeTrack.bind(this);
-      }
-    renderAction() {
-        if(this.props.isRemoval) {
-            return <button className="Track-action" onClick={this.removeTrack}>-</button>
-        } else {
-            return <button className="Track-action" onClick={this.addTrack}>+</button>
-        }
-    }
-
-    addTrack() {
-        this.props.onAdd(this.props.track);
-    }
-
-    removeTrack() {
-        this.props.onRemove(this.props.track);
-    }
-
-    render() {
+function Track(props) {
+    function renderAction() {
+      if (props.isRemoval) {
         return (
-            <div className="Track">
-                <div className="Track-information">
-                    <h3>{this.props.track.name}</h3>
-                    <p>{this.props.track.artist} | {this.props.track.album}</p>
-                </div>
-                {this.renderAction()}
-            </div>
+          <button className={styles["Track-action"]} onClick={passTrackToRemove}>
+            -
+          </button>
         );
+      } else {
+        return (
+          <button className={styles["Track-action"]} onClick={passTrack}>
+            +
+          </button>
+        );
+      }
     }
-}
+  
+    function passTrack() {
+      props.onAdd(props.track);
+    }
+  
+    function passTrackToRemove() {
+      props.onRemove(props.track);
+    }
+    return (
+      <div className={styles.Track}>
+        <div className={styles["Track-information"]}>
+          {/* <h3><!-- track name will go here --></h3> */}
+          <h3>{props.track.name}</h3>
+          {/* <p><!-- track artist will go here--> | <!-- track album will go here --></p> */}
+          <p>
+            {props.track.artist} | {props.track.album}
+          </p>
+        </div>
+        {/* <button class="Track-action"><!-- + or - will go here --></button> */}
+        {renderAction()}
+      </div>
+    );
+  }
+  
+  export default Track;
+  
