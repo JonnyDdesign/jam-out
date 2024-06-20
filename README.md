@@ -12,3 +12,6 @@ After cloning the repository, change to the current directory and run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## Status
+This project is still under construction. The majority of the code is written, however, I am still working on fixing a few bugs to make it fully functional.
