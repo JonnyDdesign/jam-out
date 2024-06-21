@@ -28,7 +28,7 @@ const Spotify = {
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         })
-            .then((response => response.json())
+            .then((response) => response.json())
             .then((jsonResponse) => {
                 if (!jsonResponse) {
                     console.error("Response error");
