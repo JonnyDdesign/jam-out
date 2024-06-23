@@ -80,15 +80,12 @@ function App() {
         JAM<span className={styles.highlight}> OUT</span>
       </h1>
       <div className={styles.App}>
-        {/* <!-- Add a SearchBar component --> */}
         <SearchBar onSearch={search} />
 
         <div className={styles["App-playlist"]}>
-          {/* <!-- Add a SearchResults component --> */}
-          <SearchResults userSearchResults={searchResults} onAdd={addTrack} />
+          <SearchResults userSearchResults={searchResults || []} onAdd={addTrack} />
           {/* passing searchResults state to the SearchResults component as userSearchResults */}
 
-          {/* <!-- Add a Playlist component --> */}
           <Playlist
             playlistName={playlistName}
             playlistTracks={playlistTracks}
