@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Irish Grover';
+  src: url('/assets/fonts/IrishGrover-Regular.woff2') format('woff2'),
+       url('/assets/fonts/IrishGrover-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body,
 html,
 #root {
@@ -13,8 +22,9 @@ h1 {
   padding: .77rem 0;
   background-color: #010c3f;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
+  font-family: 'Irish Grover', sans-serif;
+  font-size: 2.8rem;
+  letter-spacing: 5px;
   color: #ffffff;
 }
 
