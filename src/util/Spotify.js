@@ -28,48 +28,53 @@ const Spotify = {
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         })
-            .then((response) => response.json())
-            .then((jsonResponse) => {
-                if (!jsonResponse) {
-                    console.error("Response error");
+            .then(response => response.json())
+            .then(jsonResponse => {
+                if (!jsonResponse.tracks) {
+                    return [];
                 }
-                return jsonResponse.tracks.items.map((t) => ({
+                return jsonResponse.tracks.items.map(t => ({
                     id: t.id,
                     name: t.name,
                     artist: t.artist[0].name,
                     album: t.album.name,
                     uri: t.uri
                 }));
+            })
+            .catch(error => {
+                console.error("Spotify search error:", error);
+                return[];
             });        
     },
 
     savePlaylist(name, trackUris) {
         if (!name || !trackUris) return;
-        const aToken = Spotify.getAccessToken();
-        const header = { Authorization: `Bearer ${aToken}` };
+
+        const accessToken = Spotify.getAccessToken();
+        const headers = { Authorization: `Bearer ${accessToken}` };
         let userId;
-        return fetch("https://api.spotify.com/v1/me", { headers: header })
-            .then((response) => response.json())
-            .then((jsonResponse) => {
+
+        return fetch("https://api.spotify.com/v1/me", { headers: headers })
+            .then(response => response.json())
+            .then(jsonResponse => {
                 userId = jsonResponse.id;
-                let playlistId;
                 return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-                    headers: header,
-                    method: "post",
+                    headers: headers,
+                    method: "POST",
                     body: JSON.stringify({ name: name }),
-                })
-                    .then((response) => response.json())
-                    .then((jsonResponse) => {
-                        playlistId = jsonResponse.id;
-                        return fetch(
-                            `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-                            {
-                                headers: header,
-                                method: "post",
-                                body: JSON.stringify({ uris: trackUris }),
-                            }
-                        );
-                    });
+                });
+            })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                const playlistId = jsonResponse.id;
+                return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+                    headers: headers,
+                    method: "POST",
+                    body: JSON.stringify({ uris: trackUris }),
+                });
+            })
+            .catch(error => {
+                console.error("Spotify savePlaylist error:", error);
             });
     },
 };
